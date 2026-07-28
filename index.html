@@ -9,7 +9,7 @@
     <!-- Fonts and libraries are now bundled locally via Vite -->
 
     <!-- Styles -->
-  <script type="module" crossorigin src="./assets/main-FbjP8LpG.js"></script>
+  <script type="module" crossorigin src="./assets/main-CkArxaBy.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/main--nQXZjGs.css">
   <script>
     var aiptag = aiptag || {};
@@ -122,13 +122,17 @@
                 </div>
                 
                 <div id="account-guest-view">
-                    <div id="btn-change-guest-avatar" class="avatar-preview" style="width: 80px; height: 80px; margin: 0 auto 10px auto; flex-shrink: 0; border-radius: 50%; background: var(--surface-light); cursor: pointer; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; overflow: hidden;" title="Change Avatar" data-i18n-title="clickAvatarToChange">
+                    <div id="btn-change-guest-avatar" class="avatar-preview" style="width: 80px; height: 80px; margin: 0 auto 10px auto; flex-shrink: 0; border-radius: 50%; background: var(--surface-light); border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; overflow: hidden;">
                         <img id="guest-avatar-img" src="" style="width: 100%; height: 100%; object-fit: cover;" alt="Avatar">
                     </div>
-                    <p data-i18n="clickAvatarToChange" style="font-size: 0.8rem; color: var(--text-muted); margin-top: -5px; margin-bottom: 12px;">Click avatar to change</p>
                     
-                    <input type="text" id="input-guest-username" data-i18n-placeholder="enterUsername" placeholder="Enter Username" maxlength="12" style="margin-bottom: 12px; text-align: center; font-size: 1.1rem; font-weight: bold; width: 100%; max-width: 250px;">
-                    <button id="btn-save-guest-account" data-i18n="saveProfile" class="btn primary" style="margin: 0 auto 15px auto; display: block; width: 100%; max-width: 200px;">Save Profile</button>
+                    <input type="text" id="input-guest-username" disabled placeholder="Guest Username" maxlength="12" style="margin-bottom: 12px; text-align: center; font-size: 1.1rem; font-weight: bold; width: 100%; max-width: 250px; opacity: 0.75; cursor: not-allowed; background: rgba(255,255,255,0.05); color: var(--text-muted);">
+                    
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0 auto 15px auto; max-width: 280px; line-height: 1.4;">
+                        🔒 Sign in to customize your username, unlock unique avatars, and save progress!
+                    </p>
+
+                    <button id="btn-save-guest-account" class="btn primary hidden" style="margin: 0 auto 15px auto; display: none; width: 100%; max-width: 200px;">Save Profile</button>
 
                     <div id="guest-google-login-btn" style="margin: 0 auto 10px auto; display: inline-block;"></div>
                     <button id="btn-poki-login" data-i18n="loginPoki" class="btn primary hidden" style="margin: 0 auto 10px auto; display: block; width: 100%; max-width: 200px;">Login with Poki</button>
