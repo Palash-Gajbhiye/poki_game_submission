@@ -4,16 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Werewolf Classic</title>
+    <meta name="description" content="Werewolf Classic — Online multiplayer social deduction game. Play with friends as villagers or werewolves in this thrilling party game.">
     
     <!-- Fonts and libraries are now bundled locally via Vite -->
 
     <!-- Styles -->
-  <script type="module" crossorigin src="./assets/index-BSa-QoE5.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-C55yg_HM.css">
-  <script src="https://game-cdn.poki.com/scripts/v2/poki-sdk.js"></script>
+  <script type="module" crossorigin src="./assets/main-DnqFxuwH.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main--nQXZjGs.css">
+  <script>
+    var aiptag = aiptag || {};
+    aiptag.cmd = aiptag.cmd || [];
+    aiptag.cmd.display = aiptag.cmd.display || [];
+    aiptag.cmd.player = aiptag.cmd.player || [];
+    aiptag.cmp = {
+        show: true,
+        position: "centered",
+        button: true,
+        buttonText: "Privacy settings",
+        buttonPosition: "bottom-left"
+    };
+  </script>
+  <script async src="//api.adinplay.com/libs/aiptag/pub/YOUR_PUB_ID/YOUR_GAME_ID/tag.min.js"></script>
 </head>
 <body>
     <div id="game-container"></div>
+    
+    
+    <div id="preroll" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; display: none; background: rgba(0,0,0,0.85);"></div>
+    
     
     <div id="ui-layer">
         <!-- Screens will be toggled by JS -->
@@ -25,7 +43,7 @@
                 <span class="logo-subtext">CLASSIC</span>
             </h1>
             <div class="loader"></div>
-            <p id="loading-text">Connecting to servers...</p>
+            <p id="loading-text" data-i18n="loadingText">Connecting to servers...</p>
         </div>
 
         <!-- Main Menu -->
@@ -46,30 +64,35 @@
                     </div>
                     <div style="text-align: left; flex-grow: 1;">
                         <h3 id="display-username" style="margin: 0; font-size: 1.2rem; color: var(--text);">Loading...</h3>
-                        <span id="display-account-status" style="font-size: 0.8rem; color: var(--text-muted);">Guest Account</span>
+                        <span id="display-account-status" data-i18n="guestAccount" style="font-size: 0.8rem; color: var(--text-muted);">Guest Account</span>
                     </div>
                     <div style="font-size: 1.5rem; color: var(--text-muted);">⚙️</div>
                 </div>
-                <button id="btn-quick-play" class="btn quick-play-btn">⚡ Quick Play</button>
-                <button id="btn-custom-games" class="btn primary">🎮 Custom Games</button>
-                <button id="btn-how-to-play" class="btn secondary" style="border-color: var(--success); color: var(--success);">📖 How to Play</button>
+                <button id="btn-quick-play" data-i18n="quickPlay" class="btn quick-play-btn">⚡ Quick Play</button>
+                <button id="btn-custom-games" data-i18n="customGames" class="btn primary">🎮 Custom Games</button>
+                <button id="btn-how-to-play" data-i18n="howToPlayBtn" class="btn secondary" style="border-color: var(--success); color: var(--success);">📖 How to Play & Role Guide</button>
             </div>
             
-            <div style="margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                <a href="#" id="btn-privacy-policy" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;">Privacy Policy</a>
+            <!-- CrazyGames Banner Ad Container (320x50 Mobile) -->
+            <div id="cg-banner-container" class="hidden" style="width: 320px; height: 50px; margin: 10px auto 0 auto;"></div>
+            
+            <div style="margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                <button id="btn-lang-toggle" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: var(--text-main); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">🌐 <span id="lang-toggle-text">🌐 EN / RU</span></button>
                 <span style="color: var(--text-muted); font-size: 0.9rem;">·</span>
-                <a href="#" id="btn-credits" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;">Credits</a>
+                <a href="#" id="btn-privacy-policy" data-i18n="privacyPolicy" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;">Privacy Policy</a>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">·</span>
+                <a href="#" id="btn-credits" data-i18n="credits" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;">Credits</a>
             </div>
         </div>
 
         <!-- Custom Games Screen -->
         <div id="screen-custom-games" class="screen hidden">
-            <h2>Custom Games</h2>
-            <button id="btn-custom-back" class="btn-icon back-btn">Back</button>
+            <h2 data-i18n="customGamesTitle">Custom Games</h2>
+            <button id="btn-custom-back" data-i18n="back" class="btn-icon back-btn">Back</button>
             <div class="menu-box">
-                <button id="btn-play" class="btn primary">Public Rooms</button>
-                <button id="btn-create-room" class="btn secondary">Create Room</button>
-                <button id="btn-join-private" class="btn secondary">Join Private Room</button>
+                <button id="btn-play" data-i18n="publicRooms" class="btn primary">Public Rooms</button>
+                <button id="btn-create-room" data-i18n="createRoom" class="btn secondary">Create Room</button>
+                <button id="btn-join-private" data-i18n="joinPrivate" class="btn secondary">Join Private Room</button>
             </div>
         </div>
 
@@ -77,35 +100,40 @@
         <div id="modal-account" class="htplay-modal hidden" style="z-index: 900;">
             <div class="htplay-box" style="max-width: 400px; text-align: center;">
                 <button id="btn-close-account" class="htplay-close">✕</button>
-                <h2>Account Settings</h2>
+                <h2 data-i18n="accountSettings">Account Settings</h2>
                 
                 <div id="account-logged-in-view" class="hidden">
-                    <div id="btn-change-avatar" class="avatar-preview" style="width: 80px; height: 80px; margin: 0 auto 15px auto; flex-shrink: 0; border-radius: 50%; background: var(--surface-light); cursor: pointer; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; overflow: hidden;" title="Change Avatar">
+                    <div id="btn-change-avatar" class="avatar-preview" style="width: 80px; height: 80px; margin: 0 auto 15px auto; flex-shrink: 0; border-radius: 50%; background: var(--surface-light); cursor: pointer; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; overflow: hidden;" title="Change Avatar" data-i18n-title="clickAvatarToChange">
                         <img id="menu-avatar-img" src="" style="width: 100%; height: 100%; object-fit: cover;" alt="Avatar" referrerpolicy="no-referrer">
                     </div>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: -10px; margin-bottom: 15px;">Click avatar to change</p>
+                    <p data-i18n="clickAvatarToChange" style="font-size: 0.8rem; color: var(--text-muted); margin-top: -10px; margin-bottom: 15px;">Click avatar to change</p>
                     
-                    <input type="text" id="input-username" placeholder="Enter Unique Username" maxlength="12" style="margin-bottom: 10px; text-align: center; font-size: 1.2rem; font-weight: bold;">
+                    <input type="text" id="input-username" data-i18n-placeholder="enterUniqueUsername" placeholder="Enter Unique Username" maxlength="12" style="margin-bottom: 10px; text-align: center; font-size: 1.2rem; font-weight: bold;">
                     
                     <p id="quota-text" style="font-size: 0.9rem; color: var(--success); margin-bottom: 15px;">Free Changes: 4/4 (Refills every 15 days)</p>
                     
-                    <button id="btn-save-account" class="btn primary">Save Changes</button>
-                    <button id="btn-save-account-ad" class="btn hidden" style="background: linear-gradient(45deg, #FF9800, #F44336); color: white;">Watch Ad to Save 🎬</button>
-                    <p id="ad-info-text" class="hidden" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">You have exhausted your 4 free changes. Watch an ad to change your name!</p>
+                    <button id="btn-save-account" data-i18n="saveChanges" class="btn primary">Save Changes</button>
+                    <button id="btn-save-account-ad" data-i18n="watchAdToSave" class="btn hidden" style="background: linear-gradient(45deg, #FF9800, #F44336); color: white;">Watch Ad to Save 🎬</button>
+                    <p id="ad-info-text" data-i18n="adInfoText" class="hidden" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">You have exhausted your 4 free changes. Watch an ad to change your name!</p>
                     
                     <hr style="border: none; border-top: 1px solid var(--surface-light); margin: 20px 0;">
                     <!-- Since Google login renders an iframe, we will dynamically append it here in JS when opened -->
-                    <button id="btn-logout" class="btn" style="background: var(--danger); color: white;">Logout</button>
+                    <button id="btn-logout" data-i18n="logout" class="btn" style="background: var(--danger); color: white;">Logout</button>
                 </div>
                 
                 <div id="account-guest-view">
-                    <div style="width: 80px; height: 80px; margin: 0 auto 15px auto; flex-shrink: 0; border-radius: 50%; background: var(--surface-light); border: 2px solid var(--text-muted); display: flex; align-items: center; justify-content: center; overflow: hidden; opacity: 0.5;">
+                    <div id="btn-change-guest-avatar" class="avatar-preview" style="width: 80px; height: 80px; margin: 0 auto 10px auto; flex-shrink: 0; border-radius: 50%; background: var(--surface-light); cursor: pointer; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; overflow: hidden;" title="Change Avatar" data-i18n-title="clickAvatarToChange">
                         <img id="guest-avatar-img" src="" style="width: 100%; height: 100%; object-fit: cover;" alt="Avatar">
                     </div>
-                    <h3 id="guest-username-display" style="font-size: 1.5rem; margin-bottom: 5px;">Guest_1234</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">You are currently playing as a Guest. Log in to permanently claim a unique username and customize your avatar!</p>
+                    <p data-i18n="clickAvatarToChange" style="font-size: 0.8rem; color: var(--text-muted); margin-top: -5px; margin-bottom: 12px;">Click avatar to change</p>
+                    
+                    <input type="text" id="input-guest-username" data-i18n-placeholder="enterUsername" placeholder="Enter Username" maxlength="12" style="margin-bottom: 12px; text-align: center; font-size: 1.1rem; font-weight: bold; width: 100%; max-width: 250px;">
+                    <button id="btn-save-guest-account" data-i18n="saveProfile" class="btn primary" style="margin: 0 auto 15px auto; display: block; width: 100%; max-width: 200px;">Save Profile</button>
+
                     <div id="guest-google-login-btn" style="margin: 0 auto 10px auto; display: inline-block;"></div>
-                    <button id="btn-poki-login" class="btn primary hidden" style="margin: 0 auto 10px auto; display: block; width: 100%; max-width: 200px;">Login with Poki</button>
+                    <button id="btn-poki-login" data-i18n="loginPoki" class="btn primary hidden" style="margin: 0 auto 10px auto; display: block; width: 100%; max-width: 200px;">Login with Poki</button>
+                    <button id="btn-cg-login" data-i18n="loginCG" class="btn primary hidden" style="margin: 0 auto 10px auto; display: block; width: 100%; max-width: 200px;">Login with CrazyGames</button>
+                    <button id="btn-yandex-login" data-i18n="loginYandex" class="btn primary hidden" style="margin: 0 auto 10px auto; display: block; width: 100%; max-width: 200px;">Login with Yandex</button>
                 </div>
             </div>
         </div>
@@ -114,7 +142,7 @@
         <div id="modal-avatar-select" class="htplay-modal hidden" style="z-index: 1000;">
             <div class="htplay-box" style="max-width: 500px; text-align: center;">
                 <button id="btn-close-avatar-modal" class="htplay-close">✕</button>
-                <h2>Choose an Avatar</h2>
+                <h2 data-i18n="chooseAvatar">Choose an Avatar</h2>
                 <div id="avatar-grid" class="htplay-content" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; max-height: 60vh; overflow-y: auto; padding: 10px;">
                     <!-- Avatar images will be injected here via JS -->
                 </div>
@@ -125,64 +153,11 @@
         <div id="modal-how-to-play" class="htplay-modal hidden">
             <div class="htplay-box">
                 <button id="btn-close-htplay" class="htplay-close">✕</button>
-                <h2 style="text-align:center; color: var(--primary); margin-bottom: 1rem;">📖 How to Play</h2>
-                <div class="htplay-content">
-                    <div class="htplay-section">
-                        <h3>🎯 Objective</h3>
-                        <p>Werewolf is a social deduction game. <strong style="color:var(--success)">Innocents</strong> must find and eliminate the Werewolves before they are outnumbered. <strong style="color:var(--danger)">Werewolves</strong> must secretly kill villagers until they equal or outnumber the innocents.</p>
-                    </div>
-                    <div class="htplay-section">
-                        <h3>⚡ Quick Play vs 🎮 Custom Games</h3>
-                        <ul>
-                            <li><strong>Quick Play</strong> — Instantly places you in an available public room. No setup required — just jump in and play!</li>
-                            <li><strong>Custom Games</strong> — Browse public rooms, create your own room with custom settings, or join a private room using a Room Code shared by the host.</li>
-                        </ul>
-                    </div>
-                    <div class="htplay-section">
-                        <h3>👥 Roles</h3>
-                        <ul>
-                            <li><span class="role-tag villager">🧑 Villager</span> — No special ability. Discuss and vote wisely.</li>
-                            <li><span class="role-tag werewolf">🐺 Werewolf</span> — Secretly kills one player each night. If there are multiple Werewolves, you can see who your teammates are.</li>
-                            <li><span class="role-tag doctor">💉 Doctor</span> — Saves one player from death each night. You can save yourself!</li>
-                            <li><span class="role-tag detective">🔍 Detective</span> — Investigates one player per night. You will learn if that player is a Werewolf or not — use this information wisely.</li>
-                        </ul>
-                    </div>
-                    <div class="htplay-section">
-                        <h3>🌙 Night Phase</h3>
-                        <p>All players act secretly at the same time. Werewolves vote on who to kill. The Doctor picks someone to protect. The Detective investigates one player. Actions are resolved and revealed at the start of Day.</p>
-                    </div>
-                    <div class="htplay-section">
-                        <h3>☀️ Day Phase</h3>
-                        <p>The village learns who (if anyone) was killed overnight. All players discuss openly — share suspicions, alibis, and Detective findings. Dead players become <strong>Spectators</strong> and can watch but not speak.</p>
-                    </div>
-                    <div class="htplay-section">
-                        <h3>🗳️ Voting Phase</h3>
-                        <p>Players vote to eliminate a suspect. The player with the most votes is eliminated and their role is revealed to all. In case of a tie, no one is eliminated.</p>
-                    </div>
-                    <div class="htplay-section">
-                        <h3>🏆 Winning</h3>
-                        <p><strong style="color:var(--success)">Innocent Team wins</strong> when all Werewolves are eliminated.<br><strong style="color:var(--danger)">Evil Team wins</strong> when Werewolves equal or outnumber the innocents.</p>
-                    </div>
-                    <div class="htplay-section">
-                        <h3>👑 Host Controls</h3>
-                        <ul>
-                            <li>The room creator is the <strong>Host</strong>.</li>
-                            <li>The Host can <strong>kick players</strong> from the lobby before the game starts.</li>
-                            <li>The Host can set the room to <strong>Public or Private</strong>. Private rooms require a Room Code to join.</li>
-                            <li>The Host starts the game when enough players have joined.</li>
-                        </ul>
-                    </div>
-                    <div class="htplay-section">
-                        <h3>💡 Tips</h3>
-                        <ul>
-                            <li>Pay attention to who accuses whom — Werewolves often try to redirect suspicion.</li>
-                            <li>The Detective should share clues carefully to avoid being targeted at night.</li>
-                            <li>The Doctor should try to protect the Detective if they suspect one is in the game.</li>
-                            <li>Werewolves should blend in, act calm, and avoid being too quiet or too aggressive.</li>
-                        </ul>
-                    </div>
+                <h2 data-i18n="howToPlayTitle" style="text-align:center; color: var(--primary); margin-bottom: 1rem;">📖 How to Play</h2>
+                <div id="htplay-content-body" class="htplay-content">
+                    <!-- Content rendered dynamically by ui.js based on i18n language -->
                 </div>
-                <button id="btn-close-htplay-bottom" class="btn primary" style="margin-top: 1rem;">Got it!</button>
+                <button id="btn-close-htplay-bottom" data-i18n="gotIt" class="btn primary" style="margin-top: 1rem;">Got it!</button>
             </div>
         </div>
 
@@ -190,10 +165,10 @@
         <div id="modal-privacy" class="htplay-modal hidden">
             <div class="htplay-box">
                 <button id="btn-close-privacy" class="htplay-close">✕</button>
-                <h2 style="text-align:center; color: var(--primary); margin-bottom: 1rem;">Privacy Policy</h2>
+                <h2 data-i18n="privacyPolicy" style="text-align:center; color: var(--primary); margin-bottom: 1rem;">Privacy Policy</h2>
                 <!-- Content is injected dynamically by ui.js based on build platform -->
                 <div id="privacy-body" class="htplay-content"></div>
-                <button id="btn-close-privacy-bottom" class="btn primary" style="margin-top: 1rem;">Close</button>
+                <button id="btn-close-privacy-bottom" data-i18n="close" class="btn primary" style="margin-top: 1rem;">Close</button>
             </div>
         </div>
 
@@ -201,7 +176,7 @@
         <div id="modal-credits" class="htplay-modal hidden">
             <div class="htplay-box" style="max-width: 480px;">
                 <button id="btn-close-credits" class="htplay-close">✕</button>
-                <h2 style="text-align:center; color: var(--primary); margin-bottom: 1rem;">🎖️ Credits</h2>
+                <h2 data-i18n="credits" style="text-align:center; color: var(--primary); margin-bottom: 1rem;">🎖️ Credits</h2>
                 <div class="htplay-content">
                     <div class="htplay-section">
                         <h3>🎵 Music</h3>
@@ -227,7 +202,7 @@
                         <p style="margin: 0;"><strong>Palash Gajbhiye</strong></p>
                     </div>
                 </div>
-                <button id="btn-close-credits-bottom" class="btn primary" style="margin-top: 1rem;">Close</button>
+                <button id="btn-close-credits-bottom" data-i18n="close" class="btn primary" style="margin-top: 1rem;">Close</button>
             </div>
         </div>
 
@@ -235,12 +210,12 @@
         <div id="modal-ad-confirm" class="htplay-modal hidden">
             <div class="htplay-box" style="width: 90%; max-width: 350px; text-align: center; padding: 25px;">
                 <button id="btn-close-ad-confirm" class="htplay-close">✕</button>
-                <h2 style="color: var(--primary); margin-bottom: 0.5rem;">Private Room</h2>
+                <h2 data-i18n="privateRoom" style="color: var(--primary); margin-bottom: 0.5rem;">Private Room</h2>
                 <div class="htplay-content" style="border: none; background: transparent; padding: 0;">
-                    <p style="margin-bottom: 1.5rem; font-size: 1rem; color: var(--text-main);">Watch a short ad to unlock this feature.</p>
+                    <p data-i18n="privateRoomReqMsg" style="margin-bottom: 1.5rem; font-size: 1rem; color: var(--text-main);">Watch a short ad to unlock this feature.</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-                        <button id="btn-cancel-ad" class="btn secondary" style="margin-bottom: 0; flex: 1; min-width: 100px;">Cancel</button>
-                        <button id="btn-watch-ad" class="btn reward-btn" style="margin-bottom: 0; flex: 1; padding: 13px 10px; font-size: 0.95rem; white-space: nowrap;">Watch Ad 🎬</button>
+                        <button id="btn-cancel-ad" data-i18n="cancel" class="btn secondary" style="margin-bottom: 0; flex: 1; min-width: 100px;">Cancel</button>
+                        <button id="btn-watch-ad" data-i18n="watchAd" class="btn reward-btn" style="margin-bottom: 0; flex: 1; padding: 13px 10px; font-size: 0.95rem; white-space: nowrap;">Watch Ad 🎬</button>
                     </div>
                 </div>
             </div>
@@ -250,42 +225,42 @@
         <div id="modal-report-player" class="htplay-modal hidden" style="z-index: 1100;">
             <div class="htplay-box" style="max-width: 400px; text-align: left; padding: 25px;">
                 <button id="btn-close-report" class="htplay-close">✕</button>
-                <h2 style="text-align: center; color: var(--danger); margin-bottom: 1rem; font-family: var(--font-heading);">🚩 Report Player</h2>
+                <h2 data-i18n="reportPlayer" style="text-align: center; color: var(--danger); margin-bottom: 1rem; font-family: var(--font-heading);">🚩 Report Player</h2>
                 
                 <div class="form-box" style="background: transparent; border: none; padding: 0; max-width: none; box-shadow: none; align-items: flex-start;">
-                    <label for="report-select-player">Player to Report</label>
+                    <label for="report-select-player" data-i18n="selectPlayer">Player to Report</label>
                     <select id="report-select-player" style="margin-bottom: 12px; max-width: none;">
-                        <option value="" disabled selected>Select a player</option>
+                        <option value="" disabled selected data-i18n="selectPlayer">Select a player</option>
                     </select>
 
-                    <label for="report-select-reason">Reason</label>
+                    <label for="report-select-reason" data-i18n="reason">Reason</label>
                     <select id="report-select-reason" style="margin-bottom: 12px; max-width: none;">
-                        <option value="" disabled selected>Select a reason</option>
-                        <option value="toxicity">Toxicity / Harassment</option>
-                        <option value="cheating">Cheating / Teaming</option>
-                        <option value="inappropriate">Inappropriate Name / Avatar</option>
-                        <option value="spam">Spam / Chat Flood</option>
-                        <option value="other">Other / Trolling</option>
+                        <option value="" disabled selected data-i18n="selectReason">Select a reason</option>
+                        <option value="toxicity" data-i18n="reasonToxicity">Toxicity / Harassment</option>
+                        <option value="cheating" data-i18n="reasonCheating">Cheating / Teaming</option>
+                        <option value="inappropriate" data-i18n="reasonInappropriate">Inappropriate Name / Avatar</option>
+                        <option value="spam" data-i18n="reasonSpam">Spam / Chat Flood</option>
+                        <option value="other" data-i18n="reasonOther">Other / Trolling</option>
                     </select>
 
-                    <label for="report-text-details">Additional Details (Optional)</label>
-                    <textarea id="report-text-details" placeholder="Describe what happened..." maxlength="200" style="width: 100%; height: 60px; padding: 10px; border-radius: 8px; border: 1px solid rgba(51, 65, 85, 0.8); background-color: rgba(15, 23, 42, 0.8); color: var(--text-main); font-family: var(--font-body); font-size: 0.9rem; margin-bottom: 12px; resize: none; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='rgba(51, 65, 85, 0.8)'"></textarea>
+                    <label for="report-text-details" data-i18n="additionalDetails">Additional Details (Optional)</label>
+                    <textarea id="report-text-details" data-i18n-placeholder="describeHappened" placeholder="Describe what happened..." maxlength="200" style="width: 100%; height: 60px; padding: 10px; border-radius: 8px; border: 1px solid rgba(51, 65, 85, 0.8); background-color: rgba(15, 23, 42, 0.8); color: var(--text-main); font-family: var(--font-body); font-size: 0.9rem; margin-bottom: 12px; resize: none; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='rgba(51, 65, 85, 0.8)'"></textarea>
 
                     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px; width: 100%;">
                         <input type="checkbox" id="check-block-local" style="width: 16px; height: 16px; cursor: pointer;">
-                        <label for="check-block-local" style="margin-bottom: 0; cursor: pointer; color: var(--text-main); font-weight: 500; font-size: 0.9rem;">Mute & Block this player locally</label>
+                        <label for="check-block-local" data-i18n="muteBlockCheck" style="margin-bottom: 0; cursor: pointer; color: var(--text-main); font-weight: 500; font-size: 0.9rem;">Mute & Block this player locally</label>
                     </div>
 
                     <div style="background: rgba(15, 23, 42, 0.5); padding: 10px; border-radius: 8px; border: 1px solid rgba(51, 65, 85, 0.4); margin-bottom: 15px; width: 100%;">
                         <label id="label-report-captcha" style="color: var(--text-main); font-weight: bold; margin-bottom: 6px;">Solve: 5 + 3 = ?</label>
-                        <input type="text" id="input-report-captcha" placeholder="Answer" style="margin-bottom: 0; padding: 8px 12px; font-size: 0.95rem; max-width: 120px;">
+                        <input type="text" id="input-report-captcha" data-i18n-placeholder="answerPlaceholder" placeholder="Answer" style="margin-bottom: 0; padding: 8px 12px; font-size: 0.95rem; max-width: 120px;">
                     </div>
 
-                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 15px; border-left: 2px solid var(--danger); padding-left: 8px;">
+                    <p data-i18n="reportNotice" style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 15px; border-left: 2px solid var(--danger); padding-left: 8px;">
                         ⚠️ By submitting this report, a screenshot of the game board and the last 20 chat messages will be uploaded to our moderation database for verification.
                     </p>
 
-                    <button id="btn-submit-report" class="btn primary" style="max-width: none; background: linear-gradient(135deg, var(--danger), #b91c1c); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); margin-bottom: 0;">Submit Report</button>
+                    <button id="btn-submit-report" data-i18n="submitReport" class="btn primary" style="max-width: none; background: linear-gradient(135deg, var(--danger), #b91c1c); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); margin-bottom: 0;">Submit Report</button>
                 </div>
             </div>
         </div>
@@ -317,8 +292,8 @@
 
         <!-- Room Browser -->
         <div id="screen-browser" class="screen hidden">
-            <h2>Public Rooms</h2>
-            <button id="btn-browser-back" class="btn-icon back-btn">Back</button>
+            <h2 data-i18n="publicRooms">Public Rooms</h2>
+            <button id="btn-browser-back" data-i18n="back" class="btn-icon back-btn">Back</button>
             <div id="room-list" class="scrollable-list">
                 <!-- Room items injected here -->
             </div>
@@ -326,11 +301,11 @@
 
         <!-- Create Room Screen -->
         <div id="screen-create" class="screen hidden">
-            <h2>Create Room</h2>
-            <button id="btn-create-back" class="btn-icon back-btn">Back</button>
+            <h2 data-i18n="createRoom">Create Room</h2>
+            <button id="btn-create-back" data-i18n="back" class="btn-icon back-btn">Back</button>
             <div class="form-box">
-                <label>Room Name <input type="text" id="input-room-name" placeholder="My Room" maxlength="20"></label>
-                <label>Max Players 
+                <label data-i18n="roomName">Room Name <input type="text" id="input-room-name" data-i18n-placeholder="myRoom" placeholder="My Room" maxlength="20"></label>
+                <label data-i18n="maxPlayers">Max Players 
                     <select id="select-max-players">
                         <option value="4">4 Players</option>
                         <option value="6">6 Players</option>
@@ -338,53 +313,55 @@
                         <option value="12">12 Players</option>
                     </select>
                 </label>
-                <div id="pc-only-warning" class="hidden" style="font-size: 0.85em; color: var(--danger); margin-top: -10px; margin-bottom: 10px;">Rooms with > 10 players are PC only.</div>
-                <label>Game Mode
+                <div id="pc-only-warning" data-i18n="pcOnlyWarning" class="hidden" style="font-size: 0.85em; color: var(--danger); margin-top: -10px; margin-bottom: 10px;">Rooms with > 10 players are PC only.</div>
+                <label data-i18n="gameMode">Game Mode
                     <select id="select-game-mode">
-                        <option value="fast" selected>⚡ Fast Mode</option>
-                        <option value="normal">⏱️ Normal Mode</option>
+                        <option value="fast" selected data-i18n="fastMode">⚡ Fast Mode</option>
+                        <option value="normal" data-i18n="normalMode">⏱️ Normal Mode</option>
                     </select>
                 </label>
                 <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 300px; margin-bottom: 10px; margin-top: 5px;">
-                    <span style="font-size: 0.95rem; font-weight: 600; color: var(--text-main);">Private Room</span>
+                    <span data-i18n="privateRoom" style="font-size: 0.95rem; font-weight: 600; color: var(--text-main);">Private Room</span>
                     <label class="switch" style="margin-bottom: 0;">
                         <input type="checkbox" id="check-private">
                         <span class="slider round"></span>
                     </label>
                 </div>
-                <div id="private-room-req-msg" class="hidden" style="font-size: 0.85em; color: var(--text-muted); margin-bottom: 20px; width: 100%; max-width: 300px; text-align: center;">
+                <div id="private-room-req-msg" data-i18n="privateRoomReqMsg" class="hidden" style="font-size: 0.85em; color: var(--text-muted); margin-bottom: 20px; width: 100%; max-width: 300px; text-align: center;">
                     Watch a short video to create a Private Room
                 </div>
-                <button id="btn-confirm-create" class="btn primary">Create</button>
+                <button id="btn-confirm-create" data-i18n="create" class="btn primary">Create</button>
             </div>
         </div>
 
         <!-- Join Private Room Screen -->
         <div id="screen-join" class="screen hidden">
-            <h2>Join Room</h2>
-            <button id="btn-join-back" class="btn-icon back-btn">Back</button>
+            <h2 data-i18n="joinRoomTitle">Join Room</h2>
+            <button id="btn-join-back" data-i18n="back" class="btn-icon back-btn">Back</button>
             <div class="form-box">
-                <input type="text" id="input-join-code" placeholder="Enter Room Code">
-                <button id="btn-confirm-join" class="btn primary">Join</button>
+                <input type="text" id="input-join-code" data-i18n-placeholder="enterRoomCode" placeholder="Enter Room Code">
+                <button id="btn-confirm-join" data-i18n="join" class="btn primary">Join</button>
             </div>
         </div>
 
         <!-- Lobby Screen -->
         <div id="screen-lobby" class="screen hidden">
             <div class="header-bar">
-                <button id="btn-leave-lobby" class="btn-icon back-btn">Leave</button>
+                <div class="header-bar-top">
+                    <button id="btn-leave-lobby" data-i18n="leaveLobby" class="btn-icon back-btn">← Leave</button>
+                    <span id="lobby-room-code" class="badge clickable" title="Click to copy invite link" style="cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">Code: ABCD 📋</span>
+                </div>
                 <h2 id="lobby-room-name">Room Name</h2>
-                <span id="lobby-room-code" class="badge">Code: ABCD</span>
             </div>
             
             <!-- Compact Dynamic Settings Ribbon -->
             <div id="lobby-settings-ribbon" class="lobby-settings-ribbon">
                 <div class="ribbon-item">
-                    <span class="ribbon-label">Game Mode:</span>
+                    <span data-i18n="gameMode" class="ribbon-label">Game Mode:</span>
                     <span id="lobby-game-mode-val" class="ribbon-value">⚡ Fast Mode</span>
                 </div>
                 <div class="ribbon-item">
-                    <span class="ribbon-label">Room Privacy:</span>
+                    <span data-i18n="roomPrivacy" class="ribbon-label">Room Privacy:</span>
                     <div class="ribbon-control">
                         <label id="lobby-privacy-toggle-wrapper" class="switch">
                             <input type="checkbox" id="lobby-privacy-checkbox">
@@ -397,7 +374,7 @@
             
             <div class="lobby-content">
                 <div class="players-panel">
-                    <h3>Players (<span id="lobby-player-count">1/8</span>)</h3>
+                    <h3><span data-i18n="players">Players</span> (<span id="lobby-player-count">1/8</span>)</h3>
                     <div id="lobby-player-list" class="player-grid">
                         <!-- Player avatars injected here -->
                     </div>
@@ -406,7 +383,7 @@
                 <div class="chat-panel">
                     <div id="lobby-chat-messages" class="chat-messages"></div>
                     <div class="chat-input-area game-bottom-area">
-                        <input type="text" id="lobby-chat-input" placeholder="Type a message..." maxlength="100">
+                        <input type="text" id="lobby-chat-input" data-i18n-placeholder="typeMessage" placeholder="Type a message..." maxlength="100">
                         <button id="btn-lobby-send" class="btn-square">
                             <img src="assets/images/icon_send.svg" alt="Send" onerror="this.onerror=null; this.outerHTML='➤';">
                         </button>
@@ -415,8 +392,8 @@
             </div>
             
             <div class="lobby-footer">
-                <button id="btn-start-game" class="btn primary hidden">Start Game</button>
-                <p id="lobby-waiting-text">Waiting for host to start...</p>
+                <button id="btn-start-game" data-i18n="startGame" class="btn primary hidden">Start Game</button>
+                <p id="lobby-waiting-text" data-i18n="waitingForHost">Waiting for host to start...</p>
             </div>
         </div>
 
@@ -460,7 +437,7 @@
                     <button id="btn-emote" class="btn-square">
                         <img src="assets/images/icon_emote.svg" alt="Emote" onerror="this.onerror=null; this.outerHTML='😀';">
                     </button>
-                    <input type="text" id="game-chat-input" placeholder="Discuss..." maxlength="100">
+                    <input type="text" id="game-chat-input" data-i18n-placeholder="discuss" placeholder="Discuss..." maxlength="100">
                     <button id="btn-game-send" class="btn-square">
                         <img src="assets/images/icon_send.svg" alt="Send" onerror="this.onerror=null; this.outerHTML='➤';">
                     </button>
@@ -484,12 +461,12 @@
                         </div>
                     </div>
                 </div>
-                <button id="btn-close-role" class="btn primary mt-3 hidden">Got it</button>
+                <button id="btn-close-role" data-i18n="gotIt" class="btn primary mt-3 hidden">Got it</button>
             </div>
 
             <!-- Death Card Animation Modal -->
             <div id="death-card-modal" class="modal hidden pointer-events-auto" style="z-index: 200;">
-                <h1 id="death-card-header" style="color: red; text-shadow: 2px 2px 4px black; margin-bottom: 20px;">PLAYER DIED</h1>
+                <h1 id="death-card-header" data-i18n="playerDied" style="color: red; text-shadow: 2px 2px 4px black; margin-bottom: 20px;">PLAYER DIED</h1>
                 <div class="flip-card">
                     <div class="flip-card-inner" id="death-card-inner">
                         <div class="flip-card-front">
@@ -503,39 +480,39 @@
                 </div>
             </div>
 
-            <button id="btn-skip-action" class="btn secondary hidden pointer-events-auto" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100;">Skip Action</button>
+            <button id="btn-skip-action" data-i18n="skipAction" class="btn secondary hidden pointer-events-auto" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100;">Skip Action</button>
         </div>
 
         <!-- Results / End Game -->
         <div id="screen-results" class="screen hidden">
             <h1 id="results-title">Villagers Win!</h1>
             <div id="results-content"></div>
-            <button id="btn-return-lobby" class="btn primary">Return to Lobby</button>
+            <button id="btn-return-lobby" data-i18n="returnToLobby" class="btn primary">Return to Lobby</button>
         </div>
 
         <!-- Ban Lockout Screen -->
         <div id="screen-banned" class="screen hidden" style="background: linear-gradient(185deg, #111, #020202); z-index: 99999; pointer-events: auto;">
-            <h1 style="color: var(--danger); font-family: var(--font-heading); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; margin-bottom: 1.5rem; text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);">🚫 Account Suspended</h1>
+            <h1 data-i18n="accountSuspended" style="color: var(--danger); font-family: var(--font-heading); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; margin-bottom: 1.5rem; text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);">🚫 Account Suspended</h1>
             <div class="menu-box" style="max-width: 450px; border-color: rgba(239, 68, 68, 0.3); background: rgba(20, 10, 10, 0.8);">
-                <p style="font-size: 1.1rem; margin-bottom: 15px; color: var(--text-main); text-align: center;">Your access to Werewolf Classic has been suspended due to community guidelines violation.</p>
+                <p data-i18n="bannedNotice" style="font-size: 1.1rem; margin-bottom: 15px; color: var(--text-main); text-align: center;">Your access to Werewolf Classic has been suspended due to community guidelines violation.</p>
                 <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.2); width: 100%; margin-bottom: 20px; text-align: left;">
-                    <p style="margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted);">Reason: <strong id="ban-reason-text" style="color: var(--text-main);">Spreading hate / toxicity</strong></p>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Suspended until: <strong id="ban-until-text" style="color: var(--text-main);">Loading...</strong></p>
+                    <p style="margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted);"><span data-i18n="reasonLabel">Reason:</span> <strong id="ban-reason-text" style="color: var(--text-main);">Spreading hate / toxicity</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);"><span data-i18n="suspendedUntil">Suspended until:</span> <strong id="ban-until-text" style="color: var(--text-main);">Loading...</strong></p>
                 </div>
-                <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">If you believe this is an error, please contact support.</p>
+                <p data-i18n="contactSupport" style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">If you believe this is an error, please contact support.</p>
             </div>
         </div>
 
         <!-- Custom Context Menu for Player Cards -->
         <div id="player-context-menu" class="hidden" style="position: fixed; z-index: 2000; background: var(--bg-panel); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); padding: 5px; width: 160px; pointer-events: auto;">
             <button class="context-menu-item" id="btn-context-report" style="width: 100%; text-align: left; padding: 8px 10px; background: transparent; border: none; color: white; cursor: pointer; border-radius: 4px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='transparent'">
-                <span>🚩</span> Report Player
+                <span>🚩</span> <span data-i18n="reportPlayer">Report Player</span>
             </button>
             <button class="context-menu-item" id="btn-context-block" style="width: 100%; text-align: left; padding: 8px 10px; background: transparent; border: none; color: white; cursor: pointer; border-radius: 4px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='transparent'">
-                <span>🚫</span> Mute & Block
+                <span>🚫</span> <span data-i18n="muteAndBlock">Mute & Block</span>
             </button>
             <button class="context-menu-item hidden" id="btn-context-kick" style="width: 100%; text-align: left; padding: 8px 10px; background: transparent; border: none; color: var(--danger); cursor: pointer; border-radius: 4px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(239,68,68,0.15)'" onmouseout="this.style.background='transparent'">
-                <span>🚪</span> Kick Player
+                <span>🚪</span> <span data-i18n="kickPlayer">Kick Player</span>
             </button>
         </div>
 

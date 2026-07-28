@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy — Werewolf Classic</title>
-    <meta name="description" content="Privacy Policy for Werewolf Classic, a multiplayer browser game on Poki.">
+    
+    
+    
+    <meta name="description" content="Privacy Policy for Werewolf Classic, a multiplayer browser game.">
+    
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -146,57 +150,110 @@
             .section { padding: 1.1rem; }
         }
     </style>
+  <script>
+    var aiptag = aiptag || {};
+    aiptag.cmd = aiptag.cmd || [];
+    aiptag.cmd.display = aiptag.cmd.display || [];
+    aiptag.cmd.player = aiptag.cmd.player || [];
+    aiptag.cmp = {
+        show: true,
+        position: "centered",
+        button: true,
+        buttonText: "Privacy settings",
+        buttonPosition: "bottom-left"
+    };
+  </script>
+  <script async src="//api.adinplay.com/libs/aiptag/pub/YOUR_PUB_ID/YOUR_GAME_ID/tag.min.js"></script>
 </head>
 <body>
 
 <header>
     <span class="logo-emoji">🐺</span>
     <h1>Privacy Policy</h1>
-    <p>Werewolf Classic &mdash; Multiplayer Browser Game on Poki</p>
+    
+    
+    
+    <p>Werewolf Classic &mdash; Multiplayer Browser Game</p>
+    
 </header>
 
 <main>
-    <p class="date-stamp">Last Updated: July 18, 2026</p>
+    <p class="date-stamp">Last Updated: July 21, 2026</p>
 
     <div class="section">
         <h2><span class="num">1</span> Introduction</h2>
-        <p>Werewolf Classic is a free multiplayer browser game available on Poki. We are committed to protecting your privacy. Poki's platform manages advertising and core platform privacy compliance — this policy covers only data handled by the game itself. Please also refer to <strong>Poki's Privacy Policy</strong> at poki.com for full platform-wide details.</p>
+        
+        
+        
+        
+        <p>Werewolf Classic is a free multiplayer browser game. We are committed to protecting your privacy. This policy covers only data handled by the game itself.</p>
+        
     </div>
 
+    
+
+    
+
+    
+
+    
     <div class="section">
-        <h2><span class="num">2</span> No Personal Data Collected</h2>
-        <p>This game does <strong>not</strong> collect, store, or share any personal identifiable information (PII). There is no account system, no login, and no tracking built into the game.</p>
-        <p>Any temporary preferences (such as your chosen username) are stored <em>locally in your browser only</em> and are never sent to our servers.</p>
+        <h2><span class="num">2</span> Data We Collect and Why</h2>
+        <p>While guest accounts require no login or personal data, the game supports authentication via Google Sign-In to offer profile persistence (usernames, avatars, settings). When you log in, we collect and store the following data in our database:</p>
+        <ul>
+            <li><strong>Unique Identifier (ID):</strong> A platform-specific user ID to associate your profile.</li>
+            <li><strong>Username &amp; Avatar URL:</strong> To display your chosen nickname and avatar image to other players in multiplayer rooms.</li>
+            <li><strong>Device Fingerprint / Ban Status:</strong> To enforce room safety rules and prevent ban-bypass.</li>
+        </ul>
+        <p>Any temporary guest preferences are stored <em>locally in your browser only</em> using cookies or Local Storage and are never sent to our servers.</p>
     </div>
+    
 
     <div class="section">
-        <h2><span class="num">3</span> External Services (Approved by Poki)</h2>
-        <p>To provide real-time multiplayer functionality, this game connects to the following external services, approved by Poki as part of the game's publishing process:</p>
+        <h2><span class="num">3</span> External Services &amp; Subprocessors</h2>
+        <p>To provide real-time matchmaking, multiplayer gameplay, and persistent user profiles, this game connects to the following external services:</p>
 
         <div class="service-block">
-            <strong>🔥 Firebase Realtime Database (Google)</strong>
-            <p>Used for matchmaking and public room discovery. When you create a public room, the room name, username, and player count are temporarily stored. This data is ephemeral — automatically deleted when the room closes or the host disconnects. No personal data is stored and no permanent logs are kept.</p>
+            <strong>🔥 Firebase Realtime Database (Google Cloud)</strong>
+            <p>Used to store persistent profiles for logged-in users (usernames, avatars, ban states) and matchmaking room metadata. Matchmaking data (active room codes, participant counts) is ephemeral and automatically deleted when rooms close.</p>
         </div>
 
         <div class="service-block">
-            <strong>🔗 PeerJS Signaling Server (Custom / Self-Hosted)</strong>
-            <p>A dedicated PeerJS server facilitates WebRTC peer-to-peer connections between players. Only temporary connection IDs pass through this server. All actual game data (moves, chat) is transmitted directly between players' browsers and never touches our server.</p>
+            <strong>🔗 PeerJS Signaling Server (P2P Connectivity)</strong>
+            <p>A signaling server facilitates direct WebRTC peer-to-peer connections between players. Only temporary session connection IDs pass through this server. Actual game commands and in-game chat are sent directly between players' browsers and are never processed or logged by our servers.</p>
         </div>
+
+        
+
+        
+
+        
+
+        
+        <div class="service-block">
+            <strong>🎮 Google Identity Services</strong>
+            <p>Used for optional user authentication. Google may collect device identifiers, IP addresses, or use cookies. Please refer to Google's Privacy Policy for details.</p>
+        </div>
+        
     </div>
 
     <div class="section">
         <h2><span class="num">4</span> In-Game Chat</h2>
-        <p>Players may communicate via in-game text chat. All messages are transmitted directly Peer-to-Peer — they are <strong>never stored or logged</strong> on any server. Every message passes through a local, offline profanity filter before being sent, in line with Poki's community safety standards.</p>
+        <p>Players may communicate via in-game text chat. All messages are transmitted directly Peer-to-Peer — they are <strong>never stored or logged</strong> on any server. Every message passes through a local, offline profanity filter before being sent, in line with platform safety guidelines.</p>
     </div>
 
     <div class="section">
         <h2><span class="num">5</span> Cookies &amp; Local Storage</h2>
-        <p>This game may save your chosen username locally using your browser's local storage or cookies (e.g., <code>savedgame_werewolf_username</code>). This data never leaves your device and is not used for tracking or advertising. You may clear it at any time via your browser settings.</p>
+        <p>This game may save your chosen username, user ID, or platform authentication preferences locally using your browser's local storage or cookies (e.g., <code>savedgame_werewolf_username</code>). This data is not used for tracking or advertising outside the scope of game features. You may clear it at any time via your browser settings.</p>
     </div>
 
     <div class="section">
         <h2><span class="num">6</span> Contact</h2>
-        <p>For privacy concerns related to this game's data practices, please contact the developer via the game's official repository or support channels. For platform-wide privacy concerns (advertising, etc.), please visit <strong>poki.com</strong>.</p>
+        
+        
+        
+        <p>For privacy concerns related to this game's data practices, please contact the developer via the game's official repository or support channels.</p>
+        
     </div>
 </main>
 
