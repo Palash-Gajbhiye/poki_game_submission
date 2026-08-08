@@ -7,8 +7,6 @@
     
     
     
-    <meta name="description" content="Privacy Policy for Werewolf Classic, a multiplayer browser game.">
-    
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -150,20 +148,25 @@
             .section { padding: 1.1rem; }
         }
     </style>
-  <script>
-    var aiptag = aiptag || {};
-    aiptag.cmd = aiptag.cmd || [];
-    aiptag.cmd.display = aiptag.cmd.display || [];
-    aiptag.cmd.player = aiptag.cmd.player || [];
-    aiptag.cmp = {
-        show: true,
-        position: "centered",
-        button: true,
-        buttonText: "Privacy settings",
-        buttonPosition: "bottom-left"
+  <script>!function(l){
+  var b="https://universal.wgplayer.com/tag/?",
+      p="&wp="+l.pathname+"&ws="+l.search;
+  function load(h,fb){
+    var s=document.createElement("script");
+    s.async=1;
+    s.fetchPriority="high";
+    s.src=b+"lh="+h+p;
+    s.onload=function(){
+      if(fb&&!window.wgDomainOnboarded)
+        load("wgplayer.com")
     };
-  </script>
-  <script async src="//api.adinplay.com/libs/aiptag/pub/YOUR_PUB_ID/YOUR_GAME_ID/tag.min.js"></script>
+    s.onerror=function(){
+      if(fb) load("wgplayer.com")
+    };
+    document.head.appendChild(s)
+  }
+  load(l.hostname,1)
+}(location)</script>
 </head>
 <body>
 
@@ -172,8 +175,6 @@
     <h1>Privacy Policy</h1>
     
     
-    
-    <p>Werewolf Classic &mdash; Multiplayer Browser Game</p>
     
 </header>
 
@@ -186,8 +187,6 @@
         
         
         
-        <p>Werewolf Classic is a free multiplayer browser game. We are committed to protecting your privacy. This policy covers only data handled by the game itself.</p>
-        
     </div>
 
     
@@ -196,17 +195,6 @@
 
     
 
-    
-    <div class="section">
-        <h2><span class="num">2</span> Data We Collect and Why</h2>
-        <p>While guest accounts require no login or personal data, the game supports authentication via Google Sign-In to offer profile persistence (usernames, avatars, settings). When you log in, we collect and store the following data in our database:</p>
-        <ul>
-            <li><strong>Unique Identifier (ID):</strong> A platform-specific user ID to associate your profile.</li>
-            <li><strong>Username &amp; Avatar URL:</strong> To display your chosen nickname and avatar image to other players in multiplayer rooms.</li>
-            <li><strong>Device Fingerprint / Ban Status:</strong> To enforce room safety rules and prevent ban-bypass.</li>
-        </ul>
-        <p>Any temporary guest preferences are stored <em>locally in your browser only</em> using cookies or Local Storage and are never sent to our servers.</p>
-    </div>
     
 
     <div class="section">
@@ -230,11 +218,6 @@
         
 
         
-        <div class="service-block">
-            <strong>🎮 Google Identity Services</strong>
-            <p>Used for optional user authentication. Google may collect device identifiers, IP addresses, or use cookies. Please refer to Google's Privacy Policy for details.</p>
-        </div>
-        
     </div>
 
     <div class="section">
@@ -251,8 +234,6 @@
         <h2><span class="num">6</span> Contact</h2>
         
         
-        
-        <p>For privacy concerns related to this game's data practices, please contact the developer via the game's official repository or support channels.</p>
         
     </div>
 </main>
